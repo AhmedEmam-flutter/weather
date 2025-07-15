@@ -34,4 +34,5 @@ flutter_bloc
 This project uses Cubit (Bloc) for managing UI state and API interactions.
 
 
- [![Watch Video](https://drive.google.com/file/d/1Z_503BY9G-ichJSBrMPw94d3uyyA6XV_/view?usp=drivesdk)]
+[Watch Demo Video on Google Drive](https://drive.google.com/file/d/1Z_503BY9G-ichJSBrMPw94d3uyyA6XV_/view?usp=drivesdk)
+
