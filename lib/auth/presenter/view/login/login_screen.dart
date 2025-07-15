@@ -4,8 +4,8 @@ import 'package:weather/auth/presenter/controller/cubit/auth_cubit.dart';
 import 'package:weather/auth/presenter/controller/cubit/auth_state.dart';
 import 'package:weather/auth/presenter/view/login/widget/login_button.dart';
 import 'package:weather/auth/presenter/view/register/register_screen.dart';
-import 'package:weather/auth/presenter/view/splah/Splash_screen.dart';
 import 'package:weather/core/colors/app_colors.dart';
+import 'package:weather/home/presenter/view/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -56,7 +56,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             SnackBar(content: Text(state.message)),
                           );
                         } else if (state is AuthSuccess) {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SplashScreen()));
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeScreen(),  
+                            ),
+                          );
                         }
                       },
                       builder: (context, state) {
