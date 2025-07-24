@@ -10,7 +10,7 @@ import 'package:weather/home/presenter/controller/cubit/home_cubit.dart';
 class AppScreen extends StatelessWidget {
   final AuthRepositoryImpl authRepo;
 
-  AppScreen(this.authRepo, {super.key});
+  const AppScreen(this.authRepo, {super.key});
 
   @override
   Widget build(BuildContext context) {

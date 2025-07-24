@@ -5,6 +5,7 @@ import 'package:weather/home/data/models/forecast_weather_model.dart';
 
 class WeatherApiService {
   final String apiKey = '382558a54c894aa0b41192814251207';
+  final String baseUrl = 'http://10.0.2.2:5001/predict';
 
   Future<CurrentWeatherModel> fetchCurrentWeather(String region) async {
     final url =
@@ -31,4 +32,18 @@ class WeatherApiService {
       throw Exception('Failed to load forecast');
     }
   }
-}
+
+Future<String> sendWeatherToAiModel(List<int> inputList) async {
+  final response = await http.post(
+    Uri.parse(baseUrl),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({'features': inputList}),
+  );
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    return data['prediction']; 
+  } else {
+    throw Exception('AI Model API Failed');
+  }
+}}

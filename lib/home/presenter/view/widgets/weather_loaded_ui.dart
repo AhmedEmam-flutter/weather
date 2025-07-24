@@ -13,7 +13,31 @@ class WeatherLoadedUI extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+
+        
+        GlassmorphicCard(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              state.prediction == 'good'
+                  ? '✅ Weather is Perfect for Training'
+                  : '🚫 Not Suitable for Training Today',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: screenWidth * 0.05,
+                color: state.prediction == 'good'
+                    ? Colors.greenAccent
+                    : Colors.redAccent,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
         GlassmorphicCard(
           child: Column(
             children: [
@@ -55,9 +79,12 @@ class WeatherLoadedUI extends StatelessWidget {
             ],
           ),
         ),
+
         const SizedBox(height: 30),
+
         Text(
           '3-Day Forecast',
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: screenWidth * 0.055,
             color: AppColors.white,
@@ -65,6 +92,7 @@ class WeatherLoadedUI extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
+
         ...state.forecast.days.map((day) => _buildForecastTile(day, screenWidth)),
       ],
     );

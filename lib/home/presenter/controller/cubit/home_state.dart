@@ -11,8 +11,10 @@ class WeatherLoading extends WeatherState {}
 class WeatherLoaded extends WeatherState {
   final CurrentWeatherModel current;
   final ForecastWeatherModel forecast;
+    final String prediction;
 
-  WeatherLoaded(this.current, this.forecast);
+
+  WeatherLoaded(this.current, this.forecast, this.prediction);
 }
 
 class WeatherError extends WeatherState {

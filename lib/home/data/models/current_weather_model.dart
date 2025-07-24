@@ -2,11 +2,13 @@ class CurrentWeatherModel {
   final String region;
   final double temperature;
   final String condition;
+  final int humidity;
 
   CurrentWeatherModel({
     required this.region,
     required this.temperature,
     required this.condition,
+    required this.humidity,
   });
 
   factory CurrentWeatherModel.fromJson(Map<String, dynamic> json) {
@@ -14,6 +16,7 @@ class CurrentWeatherModel {
       region: json['location']['name'],
       temperature: json['current']['temp_c'].toDouble(),
       condition: json['current']['condition']['text'],
+      humidity: json['current']['humidity'],  
     );
   }
 }

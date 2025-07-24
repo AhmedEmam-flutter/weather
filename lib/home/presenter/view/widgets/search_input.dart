@@ -5,7 +5,11 @@ import 'package:weather/home/presenter/controller/cubit/home_cubit.dart';
 
 class SearchInput extends StatelessWidget {
   final TextEditingController controller;
-  const SearchInput({required this.controller, super.key});
+
+  const SearchInput({
+    required this.controller,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +20,20 @@ class SearchInput extends StatelessWidget {
       children: [
         TextField(
           controller: controller,
-          style: TextStyle(color: AppColors.white, fontSize: screenWidth * 0.04),
+          style: TextStyle(
+            color: AppColors.white,
+            fontSize: screenWidth * 0.04,
+          ),
           cursorColor: AppColors.white,
           decoration: InputDecoration(
             hintText: 'Enter a City',
-            hintStyle: TextStyle(color: AppColors.white.withOpacity(0.7)),
-            prefixIcon: Icon(Icons.search, color: AppColors.white.withOpacity(0.7)),
+            hintStyle: TextStyle(
+              color: AppColors.white.withOpacity(0.7),
+            ),
+            prefixIcon: Icon(
+              Icons.search,
+              color: AppColors.white.withOpacity(0.7),
+            ),
             filled: true,
             fillColor: Colors.white.withOpacity(0.1),
             border: OutlineInputBorder(
@@ -35,13 +47,22 @@ class SearchInput extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.white,
             padding: EdgeInsets.symmetric(vertical: screenWidth * 0.04),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
           ),
           onPressed: () {
             FocusScope.of(context).unfocus();
             final region = controller.text.trim();
             if (region.isNotEmpty) {
               context.read<WeatherCubit>().fetchWeather(region);
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('❗ Please enter a city name.'),
+                  backgroundColor: Colors.redAccent,
+                ),
+              );
             }
           },
           child: Text(
